@@ -1,5 +1,7 @@
 # Life Skills Framework
 
+**[View Landing Page](https://landing-page-delta-amber.vercel.app)** | **[GitHub](https://github.com/standardhuman/life-skills)**
+
 Workflow-based practices for all domains of life and work. Extends the rigorous, discipline-enforcing approach of superpowers to business, creative, research, productivity, interpersonal, and inner development domains.
 
 ## What This Is
@@ -49,6 +51,7 @@ life-skills/
 │   ├── communication/      # Interpersonal communication domain
 │   ├── using-life-skills/  # Meta-skill: discovery system
 │   └── creating-life-skills/ # Meta-skill: writing guide
+├── landing-page/           # Website (Vite + React + Tailwind)
 ├── examples/               # Example walkthroughs
 ├── docs/                   # Additional documentation
 └── README.md

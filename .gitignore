@@ -12,3 +12,8 @@ Thumbs.db
 # Temporary files
 *.tmp
 .notes/
+
+# Node.js (landing-page)
+node_modules/
+dist/
+.vercel/
