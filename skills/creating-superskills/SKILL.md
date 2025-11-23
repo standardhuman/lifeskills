@@ -1,11 +1,11 @@
 ---
-name: creating-life-skills
-description: Use when writing new life skills or updating existing skills
+name: creating-superskills
+description: Use when writing new superskills or updating existing skills
 ---
 
-# Creating Life Skills
+# Creating Superskills
 
-Guide for writing new skills that follow the Life Skills Framework standards.
+Guide for writing new skills that follow the Superskills Framework standards.
 
 ## When to Create a New Skill
 

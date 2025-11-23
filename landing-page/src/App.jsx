@@ -51,7 +51,7 @@ function App() {
       {/* Hero */}
       <header className="container mx-auto px-6 py-20 text-center">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-          Life Skills
+          Superskills
         </h1>
         <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto mb-8">
           Workflow-based practices for all domains of life and work.
@@ -59,7 +59,7 @@ function App() {
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a
-            href="https://github.com/standardhuman/life-skills"
+            href="https://github.com/standardhuman/superskills"
             className="bg-white text-slate-900 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition"
           >
             View on GitHub
@@ -76,7 +76,7 @@ function App() {
       {/* What It Is */}
       <section className="container mx-auto px-6 py-16">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">What is Life Skills?</h2>
+          <h2 className="text-3xl font-bold mb-6">What is Superskills?</h2>
           <p className="text-lg text-slate-300 mb-8">
             A collection of actionable, step-by-step workflows that help you navigate
             common situations across different life domains. Each skill provides a
@@ -146,7 +146,7 @@ function App() {
               </h3>
               <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
                 <p className="text-slate-400"># Clone to your Claude config directory</p>
-                <p className="text-green-400">git clone https://github.com/standardhuman/life-skills.git ~/.claude/life-skills</p>
+                <p className="text-green-400">git clone https://github.com/standardhuman/superskills.git ~/.claude/superskills</p>
               </div>
               <p className="text-slate-400 mt-4 text-sm">
                 Skills will be auto-discovered by Claude Code's skill system. The meta-skill
@@ -187,17 +187,17 @@ function App() {
       <footer className="container mx-auto px-6 py-12 border-t border-slate-700">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-400">
-            Life Skills Framework • Open Source
+            Superskills • Inspired by <a href="https://github.com/cldcvr/superpowers" className="text-blue-400 hover:text-blue-300">Superpowers</a>
           </p>
           <div className="flex gap-6">
             <a
-              href="https://github.com/standardhuman/life-skills"
+              href="https://github.com/standardhuman/superskills"
               className="text-slate-400 hover:text-white transition"
             >
               GitHub
             </a>
             <a
-              href="https://github.com/standardhuman/life-skills/blob/main/CONTRIBUTING.md"
+              href="https://github.com/standardhuman/superskills/blob/main/CONTRIBUTING.md"
               className="text-slate-400 hover:text-white transition"
             >
               Contributing

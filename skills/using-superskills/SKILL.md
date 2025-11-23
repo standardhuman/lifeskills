@@ -1,23 +1,23 @@
 ---
-name: using-life-skills
-description: Use when starting any conversation - establishes discovery system for life skills across all domains
+name: using-superskills
+description: Use when starting any conversation - establishes discovery system for superskills across all domains
 ---
 
 <EXTREMELY-IMPORTANT>
-If you think there is even a 1% chance a life skill might apply to what you are doing, you ABSOLUTELY MUST check for it.
+If you think there is even a 1% chance a superskill might apply to what you are doing, you ABSOLUTELY MUST check for it.
 
 IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE. YOU MUST USE IT.
 
 This is not negotiable. This is not optional. You cannot rationalize your way out of this.
 </EXTREMELY-IMPORTANT>
 
-# Using Life Skills
+# Using Superskills
 
 ## MANDATORY FIRST RESPONSE PROTOCOL
 
 Before responding to ANY user message about life/work (non-code topics), you MUST complete this checklist:
 
-1. ☐ Scan available life skills
+1. ☐ Scan available superskills
 2. ☐ Ask yourself: "Does ANY skill match this situation?"
 3. ☐ If yes → Use the Skill tool to load and run the skill
 4. ☐ Announce which skill you're using
@@ -119,11 +119,11 @@ If you catch yourself thinking ANY of these thoughts, STOP. You are rationalizin
 
 ## Integration with Superpowers
 
-If both life-skills and superpowers are available:
+If both superskills and superpowers are available:
 
 **Domain separation:**
 - Superpowers handles: Code, engineering, testing, git, technical workflows
-- Life-skills handles: Everything else (business, creative, inner, communication, etc.)
+- Superskills handles: Everything else (business, creative, inner, communication, etc.)
 
 **No conflicts:** Domains don't overlap, clear boundaries
 
@@ -146,12 +146,12 @@ If both life-skills and superpowers are available:
 
 **List all skills:**
 ```bash
-ls -la ~/.claude/life-skills/skills/*/SKILL.md
+ls -la ~/.claude/superskills/skills/*/SKILL.md
 ```
 
 **Search for skill by keyword:**
 ```bash
-grep -r "description.*[keyword]" ~/.claude/life-skills/skills/
+grep -r "description.*[keyword]" ~/.claude/superskills/skills/
 ```
 
 **Read specific skill:**
@@ -160,7 +160,7 @@ Use Skill tool: `skill: "domain:skill-name"`
 ## Summary
 
 **Starting any non-code conversation:**
-1. Check if any life skill matches context
+1. Check if any superskill matches context
 2. If yes → Suggest the skill
 3. If accepted → Load and follow it
 4. Announce you're using it
