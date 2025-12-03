@@ -14,10 +14,10 @@ This project is inspired by [Superpowers](https://github.com/cldcvr/superpowers)
 
 A collection of actionable, step-by-step workflows (called "skills") that help you navigate common situations across different life domains:
 
-- **Business**: Planning, decision-making, strategic thinking
+- **Business**: Planning, pricing, revenue growth, client management, sales
+- **Finance**: Budgeting, investing, retirement, taxes, debt elimination
 - **Creative**: Ideation, feedback, creative blocks
-- **Research**: Question formulation, synthesis, evaluation
-- **Productivity**: Prioritization, habit formation, energy management
+- **Productivity**: Daily routines, weekly review, prioritization
 - **Inner**: Emotion processing, self-connection, values clarification
 - **Communication**: NVC, conflict resolution, boundary setting
 - **Health**: Sleep, strength training, nutrition
@@ -53,18 +53,12 @@ The framework includes two meta-skills:
 ```
 lifeskills/
 ├── skills/
-│   ├── business/           # Business operations domain
-│   ├── creative/           # Creative work domain
-│   ├── research/           # Research & analysis domain
-│   ├── productivity/       # Personal productivity domain
-│   ├── inner/              # Inner development domain
-│   ├── communication/      # Interpersonal communication domain
-│   ├── health/             # Physical health domain
-│   ├── using-lifeskills/   # Meta-skill: discovery system
-│   └── creating-lifeskills/ # Meta-skill: writing guide
-├── landing-page/           # Website (Vite + React + Tailwind)
-├── examples/               # Example walkthroughs
-├── docs/                   # Additional documentation
+│   ├── [22 skill directories]  # Organized by topic
+│   ├── using-lifeskills/       # Meta-skill: discovery system
+│   └── creating-lifeskills/    # Meta-skill: writing guide
+├── landing-page/               # Website (Vite + React + Tailwind)
+├── examples/                   # Example walkthroughs
+├── docs/                       # Additional documentation
 └── README.md
 ```
 
@@ -85,17 +79,45 @@ lifeskills/
 
 ✅ **Phase 2: Core Skills** (Complete)
 
-**Implemented skills (10):**
-- `business:weekly-review` - GTD-based weekly planning and reflection
-- `business:decision-making` - Strategic decision-making with pre-mortem analysis
-- `productivity:daily-shutdown` - End-of-day shutdown ritual
-- `productivity:daily-startup` - Beginning-of-day startup ritual
-- `inner:self-connection` - NVC/Focusing-based emotional processing
-- `communication:nvc-conversation` - Nonviolent Communication framework
-- `creative:brainstorming` - Structured creative ideation process
-- `health:sleep-routine` - Evidence-based sleep optimization system
-- `health:strength-program` - Progressive overload strength training
-- `health:nutrition-planning` - Sustainable nutrition and meal prep system
+**22 implemented skills across 7 domains:**
+
+*Business (5):*
+- `business-planning` - Business goal setting and strategic planning
+- `client-management` - Client relationships and retention
+- `pricing-strategy` - Product/service pricing optimization
+- `revenue-growth` - Systematic business revenue growth
+- `sales-proposals` - Consultative selling and proposal writing
+
+*Finance (7):*
+- `big-purchases` - Major purchase decision framework
+- `budgeting` - Zero-based monthly budgeting
+- `debt-payoff` - Debt elimination strategy
+- `financial-review` - Periodic financial health check
+- `portfolio-assessment` - Investment portfolio evaluation
+- `retirement-planning` - Retirement savings strategy
+- `tax-mitigation` - Legal tax reduction strategies
+
+*Productivity (3):*
+- `weekly-review` - GTD-based weekly planning and reflection
+- `daily-shutdown` - End-of-day shutdown ritual
+- `daily-startup` - Beginning-of-day startup ritual
+
+*Health (3):*
+- `sleep-routine` - Evidence-based sleep optimization
+- `strength-program` - Progressive overload strength training
+- `nutrition-planning` - Sustainable nutrition and meal prep
+
+*Communication (1):*
+- `nvc-conversation` - Nonviolent Communication framework
+
+*Inner (1):*
+- `self-connection` - NVC/Focusing-based emotional processing
+
+*Creative (1):*
+- `brainstorming` - Structured creative ideation process
+
+*Decision-Making (1):*
+- `decision-making` - Strategic decision-making with pre-mortem analysis
 
 All skills are grounded in established frameworks (GTD, NVC, SCAMPER, First Principles Thinking, Matthew Walker, 5/3/1, ISSN, etc.) and include actionable workflows with examples.
 

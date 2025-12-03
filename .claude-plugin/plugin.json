@@ -1,13 +1,9 @@
 {
   "name": "lifeskills",
-  "description": "Workflow-based practices for all domains of life and work: business, creative, productivity, inner development, communication, and health",
+  "description": "Personal life skills covering productivity, health, business, communication, creativity, and inner work",
   "version": "1.0.0",
   "author": {
     "name": "Brian",
     "email": ""
-  },
-  "homepage": "https://github.com/standardhuman/lifeskills",
-  "repository": "https://github.com/standardhuman/lifeskills",
-  "license": "MIT",
-  "keywords": ["skills", "workflows", "GTD", "NVC", "decision-making", "productivity", "creativity", "business", "health", "sleep", "nutrition", "strength"]
+  }
 }
