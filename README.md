@@ -53,7 +53,7 @@ The framework includes two meta-skills:
 ```
 lifeskills/
 ├── skills/
-│   ├── [22 skill directories]  # Organized by topic
+│   ├── [23 skill directories]  # Organized by topic
 │   ├── using-lifeskills/       # Meta-skill: discovery system
 │   └── creating-lifeskills/    # Meta-skill: writing guide
 ├── landing-page/               # Website (Vite + React + Tailwind)
@@ -79,7 +79,7 @@ lifeskills/
 
 ✅ **Phase 2: Core Skills** (Complete)
 
-**22 implemented skills across 7 domains:**
+**23 implemented skills across 7 domains:**
 
 *Business (5):*
 - `business-planning` - Business goal setting and strategic planning
@@ -97,7 +97,8 @@ lifeskills/
 - `retirement-planning` - Retirement savings strategy
 - `tax-mitigation` - Legal tax reduction strategies
 
-*Productivity (3):*
+*Productivity (4):*
+- `scheduling` - Multi-source daily/weekly planning with calendar, tasks, weather, fitness integration
 - `weekly-review` - GTD-based weekly planning and reflection
 - `daily-shutdown` - End-of-day shutdown ritual
 - `daily-startup` - Beginning-of-day startup ritual

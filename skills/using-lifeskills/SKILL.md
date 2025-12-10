@@ -51,9 +51,10 @@ Monitor conversation for these triggers and suggest appropriate skills:
 | Retirement, 401k, IRA, FIRE | `retirement-planning` | Retirement planning framework |
 | Taxes, deductions, tax planning | `tax-mitigation` | Legal tax reduction strategies |
 
-**Productivity (3 skills):**
+**Productivity (4 skills):**
 | Trigger Pattern | Suggested Skill | Rationale |
 |----------------|-----------------|-----------|
+| Schedule, calendar, "what's my day", planning, availability | `scheduling` | Multi-source daily/weekly planning |
 | End-of-week timing (Friday afternoon) | `weekly-review` | Weekly reflection and planning |
 | Feeling scattered or overwhelmed at end of day | `daily-shutdown` | End-of-day closure |
 | Starting the workday, morning routine | `daily-startup` | Beginning-of-day ritual |
@@ -128,6 +129,7 @@ User types: `/review`
 → Maps to `weekly-review` skill
 
 **Common mappings:**
+- `/schedule` → `scheduling`
 - `/review` → `weekly-review`
 - `/nvc` → `nvc-conversation`
 - `/decide` → `decision-making`
@@ -176,7 +178,7 @@ If both lifeskills and superpowers are available:
 - Both follow checklist-based workflows
 - Both announce skill usage
 
-## Available Skills (22 total)
+## Available Skills (23 total)
 
 **Business (5):**
 - `business-planning` - Business goal setting and strategic planning
@@ -194,7 +196,8 @@ If both lifeskills and superpowers are available:
 - `retirement-planning` - Retirement savings strategy
 - `tax-mitigation` - Legal tax reduction strategies
 
-**Productivity (3):**
+**Productivity (4):**
+- `scheduling` - Multi-source daily/weekly planning with calendar, tasks, weather, fitness integration
 - `weekly-review` - GTD-based weekly planning and reflection
 - `daily-shutdown` - End-of-day shutdown ritual
 - `daily-startup` - Beginning-of-day startup ritual
