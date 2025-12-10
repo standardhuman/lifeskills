@@ -5,10 +5,12 @@ import {
   Clock,
   BookOpen,
   ChevronRight,
-  Layout,
   BrainCircuit,
+  Layout,
   ArrowRight,
   Package,
+  List,
+  Grid
 } from 'lucide-react';
 import './App.css';
 
@@ -25,47 +27,49 @@ const DOMAINS = {
   CREATIVE: { id: 'creative', label: 'Creative', color: 'text-pink-400', bg: 'bg-pink-400/10', border: 'border-pink-400/20', hover: 'hover:bg-pink-400/20' },
 };
 
-const SKILLS_DATA = [
-  // Productivity
-  { id: 'weekly-review', name: 'Weekly Review', icon: '📋', duration: '60-90 min', framework: 'Getting Things Done', domain: 'PRODUCTIVITY', description: 'Clear mental clutter, review all open loops, and plan the week ahead with intention.', phases: ['Collect', 'Process', 'Organize', 'Review', 'Plan'] },
-  { id: 'daily-shutdown', name: 'Daily Shutdown', icon: '🌅', duration: '10-15 min', framework: 'Deep Work', domain: 'PRODUCTIVITY', description: 'Achieve psychological closure so work thoughts don\'t intrude on personal time.', phases: ['Capture', 'Review', 'Plan', 'Tidy', 'Close'] },
-  { id: 'daily-startup', name: 'Daily Startup', icon: '🌄', duration: '15-20 min', framework: 'Deep Work + Atomic Habits', domain: 'PRODUCTIVITY', description: 'Start work with intention and clarity instead of reactive scrambling.', phases: ['Prepare', 'Launch', 'Review', 'Prime', 'Focus', 'Execute'] },
-  { id: 'decision-making', name: 'Decision Making', icon: '🎯', duration: '30-60 min', framework: 'First Principles + OODA Loop', domain: 'PRODUCTIVITY', description: 'Navigate complex decisions by framing the real question, gathering options, and stress-testing your choice.', phases: ['Frame', 'Gather', 'Options', 'Evaluate', 'Decide', 'Act'] },
-
-  // Business
-  { id: 'business-planning', name: 'Business Planning', icon: '📈', duration: '2-3 hrs quarterly', framework: 'EOS + OKRs', domain: 'BUSINESS', description: 'Set business direction with clear goals and 90-day execution sprints.', phases: ['Vision', 'Annual Goals', 'Quarterly Rocks', 'Weekly Execution'] },
-  { id: 'pricing-strategy', name: 'Pricing Strategy', icon: '💰', duration: '60-75 min', framework: 'Value-Based Pricing', domain: 'BUSINESS', description: 'Price products and services based on value delivered, not just costs.', phases: ['Value', 'Cost', 'Market', 'Position', 'Structure'] },
-  { id: 'client-management', name: 'Client Management', icon: '🤝', duration: 'Ongoing', framework: 'Customer Success', domain: 'BUSINESS', description: 'Build lasting client relationships through systematic communication and value delivery.', phases: ['Onboarding', 'Active', 'Retention', 'Offboarding'] },
-  { id: 'sales-proposals', name: 'Sales Proposals', icon: '📝', duration: '30-60 min/proposal', framework: 'SPIN Selling + MEDDIC', domain: 'BUSINESS', description: 'Win more deals through discovery-based selling and compelling proposals.', phases: ['Qualify', 'Discover', 'Present', 'Close', 'Follow-up'] },
-  { id: 'revenue-growth', name: 'Revenue Growth', icon: '🚀', duration: '1-2 hrs planning', framework: 'Growth Levers', domain: 'BUSINESS', description: 'Systematically grow revenue through leads, conversion, value, frequency, and retention.', phases: ['Leads', 'Conversion', 'Value', 'Frequency', 'Retention'] },
-
-  // Finance
-  { id: 'budgeting', name: 'Budgeting', icon: '💵', duration: '30-45 min initial', framework: 'Zero-Based Budgeting + YNAB', domain: 'FINANCE', description: 'Allocate every dollar to a purpose before the month begins.', phases: ['Income', 'Fixed', 'Variable', 'Goals', 'Balance'] },
-  { id: 'financial-review', name: 'Financial Review', icon: '📊', duration: '30-60 min monthly', framework: 'Personal CFO', domain: 'FINANCE', description: 'Track net worth, review cash flow, and assess progress toward financial goals.', phases: ['Gather', 'Net Worth', 'Cash Flow', 'Goals', 'Actions'] },
-  { id: 'big-purchases', name: 'Big Purchases', icon: '🛒', duration: '30-45 min', framework: 'Value-Based Spending', domain: 'FINANCE', description: 'Evaluate major purchases against values, affordability, and alternatives.', phases: ['Pause', 'Afford', 'Align', 'Optimize', 'Decide'] },
-  { id: 'debt-payoff', name: 'Debt Payoff', icon: '🎯', duration: '45-60 min planning', framework: 'Debt Snowball/Avalanche', domain: 'FINANCE', description: 'Pay off debt using avalanche or snowball method with momentum-building milestones.', phases: ['Inventory', 'Strategy', 'Plan', 'Accelerate', 'Execute'] },
-  { id: 'retirement-planning', name: 'Retirement Planning', icon: '🏖️', duration: '45-60 min', framework: '4% Rule + Tax Optimization', domain: 'FINANCE', description: 'Calculate your retirement number and optimize account contributions.', phases: ['Envision', 'Calculate', 'Assess', 'Plan', 'Execute'] },
-  { id: 'tax-mitigation', name: 'Tax Mitigation', icon: '📋', duration: '30-60 min', framework: 'Tax-Advantaged Strategies', domain: 'FINANCE', description: 'Reduce tax burden through retirement accounts, timing, and smart planning.', phases: ['Retirement', 'HSA', 'Harvesting', 'Charitable', 'Timing'] },
-  { id: 'portfolio-assessment', name: 'Portfolio Assessment', icon: '⚖️', duration: '45-60 min', framework: 'Modern Portfolio Theory', domain: 'FINANCE', description: 'Review investment portfolio for risk alignment, fees, and rebalancing needs.', phases: ['Inventory', 'Allocation', 'Target', 'Evaluate', 'Rebalance'] },
-
-  // Health
-  { id: 'sleep-routine', name: 'Sleep Routine', icon: '😴', duration: '90 min wind-down', framework: 'Matthew Walker + Huberman', domain: 'HEALTH', description: 'Create conditions for quality sleep through wind-down rituals and environment optimization.', phases: ['Wind-Down', 'Environment', 'Pre-Sleep', 'Wake Protocol', 'Consistency'] },
-  { id: 'strength-program', name: 'Strength Program', icon: '🏋️', duration: '45-75 min/session', framework: '5/3/1 + Starting Strength', domain: 'HEALTH', description: 'Build strength systematically through compound movements, tracking, and planned progression.', phases: ['Program', 'Execute', 'Track', 'Progress', 'Deload'] },
-  { id: 'nutrition-planning', name: 'Nutrition Planning', icon: '🥗', duration: '2 hrs/week prep', framework: 'ISSN + Precision Nutrition', domain: 'HEALTH', description: 'Fuel your body with a flexible, sustainable approach to meal planning and tracking.', phases: ['Calculate', 'Plan', 'Prep', 'Track', 'Adjust'] },
-
-  // Other
-  { id: 'self-connection', name: 'Self Connection', icon: '💜', duration: '15-30 min', framework: 'NVC + Focusing', domain: 'INNER', description: 'Process difficult emotions by connecting with body sensations and identifying underlying needs.', phases: ['Pause', 'Body', 'Feeling', 'Need', 'Respond'] },
-  { id: 'nvc-conversation', name: 'NVC Conversation', icon: '💬', duration: '20-45 min', framework: 'Nonviolent Communication', domain: 'COMMUNICATION', description: 'Navigate conflict by expressing observations, feelings, needs, and requests without blame.', phases: ['Prepare', 'Observe', 'Feel', 'Need', 'Request', 'Listen'] },
-  { id: 'brainstorming', name: 'Brainstorming', icon: '💡', duration: '30-60 min', framework: 'SCAMPER + Design Thinking', domain: 'CREATIVE', description: 'Generate innovative ideas using proven creativity frameworks and escape conventional thinking.', phases: ['Diverge', 'Challenge', 'Combine', 'Converge', 'Refine'] },
+// Configuration to control how sections are rendered in "All" view
+const SECTIONS = [
+  { id: 'productivity', title: 'Productivity', domains: ['PRODUCTIVITY'], color: 'text-green-400' },
+  { id: 'business', title: 'Business', domains: ['BUSINESS'], color: 'text-blue-400' },
+  { id: 'finance', title: 'Finance', domains: ['FINANCE'], color: 'text-emerald-400' },
+  { id: 'health', title: 'Health', domains: ['HEALTH'], color: 'text-teal-400' },
+  // Grouping sparse domains into one section to fix the "orphan card" visual issue
+  { id: 'personal', title: 'Personal Growth', domains: ['INNER', 'COMMUNICATION', 'CREATIVE'], color: 'text-purple-400' },
 ];
 
-const BUNDLES_DATA = [
-  { id: 'lifeskills-all', name: 'All Skills', icon: '📦', count: 22, description: 'Complete collection of all 22 LifeSkills', color: 'from-blue-500 to-purple-500' },
-  { id: 'lifeskills-finance', name: 'Finance', icon: '💰', count: 7, description: 'Budgeting, investing, taxes, retirement', color: 'from-emerald-500 to-teal-500' },
-  { id: 'lifeskills-business', name: 'Business', icon: '📈', count: 5, description: 'Planning, pricing, sales, clients', color: 'from-blue-500 to-cyan-500' },
-  { id: 'lifeskills-personal', name: 'Personal', icon: '💜', count: 4, description: 'Communication, emotions, creativity, decisions', color: 'from-purple-500 to-pink-500' },
-  { id: 'lifeskills-productivity', name: 'Productivity', icon: '⚡', count: 3, description: 'Daily startup, shutdown, weekly review', color: 'from-green-500 to-emerald-500' },
-  { id: 'lifeskills-health', name: 'Health', icon: '💪', count: 3, description: 'Sleep, strength, nutrition', color: 'from-teal-500 to-cyan-500' },
+const SKILLS_DATA = [
+  // Productivity
+  { id: 'scheduling', name: 'Scheduling', icon: '📅', duration: '5-15 min', framework: 'Multi-Source Integration', domain: 'PRODUCTIVITY', description: 'Intelligent daily/weekly planning with calendar, tasks, weather, fitness, and travel time integration.', phases: ['Gather Data', 'Analyze', 'Present', 'Execute'] },
+  { id: 'weekly-review', name: 'Weekly Review', icon: '📋', duration: '60-90 min', framework: 'Getting Things Done', domain: 'PRODUCTIVITY', description: 'Clear your head, process inputs, and plan for the week ahead.', phases: ['Clear Inbox', 'Review Calendar', 'Update Lists', 'Plan Week'] },
+  { id: 'daily-shutdown', name: 'Daily Shutdown', icon: '🌅', duration: '10-15 min', framework: 'Deep Work', domain: 'PRODUCTIVITY', description: 'Ritual to disconnect from work and transition to personal time.', phases: ['Review Tasks', 'Update Plan', 'Close Loops', 'Disconnect'] },
+  { id: 'daily-startup', name: 'Daily Startup', icon: '🌄', duration: '15-20 min', framework: 'Deep Work + Atomic Habits', domain: 'PRODUCTIVITY', description: 'Prime your mind and environment for a focused day.', phases: ['Hydrate', 'Review Goals', 'Prioritize', 'Start'] },
+  { id: 'decision-making', name: 'Decision Making', icon: '🎯', duration: '30-60 min', framework: 'First Principles + OODA', domain: 'PRODUCTIVITY', description: 'Systematic approach to solving complex problems.', phases: ['Observe', 'Orient', 'Decide', 'Act'] },
+
+  // Business
+  { id: 'business-planning', name: 'Business Planning', icon: '📈', duration: '2-3 hrs quarterly', framework: 'EOS + OKRs', domain: 'BUSINESS', description: 'Align team vision and set measurable quarterly objectives.', phases: ['Review V/T/O', 'Set Rocks', 'Identify Issues', 'Solve'] },
+  { id: 'pricing-strategy', name: 'Pricing Strategy', icon: '💰', duration: '60-75 min', framework: 'Value-Based Pricing', domain: 'BUSINESS', description: 'Determine optimal pricing based on customer value.', phases: ['Analyze Value', 'Segment', 'Structure', 'Price'] },
+  { id: 'client-management', name: 'Client Management', icon: '🤝', duration: 'Ongoing', framework: 'Customer Success', domain: 'BUSINESS', description: 'Framework for maintaining healthy client relationships.', phases: ['Onboard', 'Deliver', 'Review', 'Renew'] },
+  { id: 'sales-proposals', name: 'Sales Proposals', icon: '📝', duration: '30-60 min', framework: 'SPIN Selling + MEDDIC', domain: 'BUSINESS', description: 'Create compelling proposals that address client pain points.', phases: ['Situation', 'Problem', 'Implication', 'Need-Payoff'] },
+  { id: 'revenue-growth', name: 'Revenue Growth', icon: '🚀', duration: '1-2 hrs planning', framework: 'Growth Levers', domain: 'BUSINESS', description: 'Identify and activate key levers for business expansion.', phases: ['Acquisition', 'Activation', 'Retention', 'Referral'] },
+
+  // Finance
+  { id: 'budgeting', name: 'Budgeting', icon: '💵', duration: '30-45 min', framework: 'Zero-Based + YNAB', domain: 'FINANCE', description: 'Give every dollar a job and gain control of your cash flow.', phases: ['Income', 'Expenses', 'Allocate', 'Review'] },
+  { id: 'financial-review', name: 'Financial Review', icon: '📊', duration: '30-60 min', framework: 'Personal CFO', domain: 'FINANCE', description: 'Monthly check-in on net worth and spending trends.', phases: ['Update Acts', 'Review Spend', 'Check Goals', 'Adjust'] },
+  { id: 'big-purchases', name: 'Big Purchases', icon: '🛒', duration: '30-45 min', framework: 'Value-Based Spending', domain: 'FINANCE', description: 'Evaluate significant expenses against your values.', phases: ['Need Analysis', 'Research', 'Wait Rule', 'Buy'] },
+  { id: 'debt-payoff', name: 'Debt Payoff', icon: '🎯', duration: '45-60 min', framework: 'Snowball/Avalanche', domain: 'FINANCE', description: 'Strategic plan to eliminate debt systematically.', phases: ['List Debts', 'Choose Strategy', 'Automate', 'Track'] },
+  { id: 'retirement-planning', name: 'Retirement Plan', icon: '🏖️', duration: '45-60 min', framework: '4% Rule + Tax Opt', domain: 'FINANCE', description: 'Calculate numbers for financial independence.', phases: ['Calculate FI', 'Asset Alloc', 'Contribution', 'Project'] },
+  { id: 'tax-mitigation', name: 'Tax Mitigation', icon: '📋', duration: '30-60 min', framework: 'Tax-Advantaged Strat', domain: 'FINANCE', description: 'Legally optimize your tax burden through planning.', phases: ['Deductions', 'Credits', 'Deferral', 'Harvesting'] },
+  { id: 'portfolio-assessment', name: 'Portfolio Check', icon: '⚖️', duration: '45-60 min', framework: 'Modern Portfolio Theory', domain: 'FINANCE', description: 'Rebalance and assess asset allocation risk.', phases: ['Review', 'Compare', 'Rebalance', 'Execute'] },
+
+  // Health
+  { id: 'sleep-routine', name: 'Sleep Routine', icon: '😴', duration: '90 min wind-down', framework: 'Walker + Huberman', domain: 'HEALTH', description: 'Optimize sleep hygiene for recovery and performance.', phases: ['Darkness', 'Cooling', 'Relaxation', 'Sleep'] },
+  { id: 'strength-program', name: 'Strength Program', icon: '🏋️', duration: '45-75 min', framework: '5/3/1 + Starting Strength', domain: 'HEALTH', description: 'Progressive overload training for physical resilience.', phases: ['Warmup', 'Compound', 'Accessory', 'Cooldown'] },
+  { id: 'nutrition-planning', name: 'Nutrition Plan', icon: '🥗', duration: '2 hrs/week', framework: 'ISSN + Precision Nutri', domain: 'HEALTH', description: 'Fuel your body based on activity and goals.', phases: ['Macros', 'Meal Prep', 'Hydration', 'Track'] },
+
+  // Personal Growth (Inner, Communication, Creative)
+  { id: 'self-connection', name: 'Self Connection', icon: '💜', duration: '15-30 min', framework: 'NVC + Focusing', domain: 'INNER', description: 'Check in with your internal state and feelings.', phases: ['Pause', 'Notice', 'Feel', 'Need'] },
+  { id: 'nvc-conversation', name: 'NVC Chat', icon: '💬', duration: '20-45 min', framework: 'Nonviolent Comm', domain: 'COMMUNICATION', description: 'Navigate difficult conversations with empathy.', phases: ['Observation', 'Feeling', 'Need', 'Request'] },
+  { id: 'brainstorming', name: 'Brainstorming', icon: '💡', duration: '30-60 min', framework: 'SCAMPER + Design Thinking', domain: 'CREATIVE', description: 'Generate novel solutions to open-ended problems.', phases: ['Empathize', 'Define', 'Ideate', 'Prototype'] },
 ];
 
 /**
@@ -102,9 +106,9 @@ const Navbar = () => (
 const Hero = () => (
   <div className="relative overflow-hidden pt-16 pb-24">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm mb-8">
+      <div className="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm mb-8 animate-fade-in-up">
         <span className="flex h-2 w-2 rounded-full bg-blue-400 mr-2 animate-pulse"></span>
-        Now Available for Claude Desktop
+        v2.0 Now Available for Claude
       </div>
 
       <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
@@ -115,8 +119,7 @@ const Hero = () => (
       </h1>
 
       <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10">
-        A collection of {SKILLS_DATA.length} proven frameworks for productivity, business, finance, and health.
-        Designed for AI assistants, but perfect for humans.
+        A library for life. Structured protocols for business, health, and <span className="text-purple-400">relationships</span>.
       </p>
 
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -141,9 +144,9 @@ const Hero = () => (
 
     {/* Abstract Background Elements */}
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
-      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-      <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
     </div>
   </div>
 );
@@ -158,11 +161,43 @@ const FeatureCard = ({ icon: Icon, title, description }) => (
   </div>
 );
 
-const SkillCard = ({ skill }) => {
+const SkillCard = ({ skill, viewMode }) => {
   const domainConfig = DOMAINS[skill.domain];
 
+  if (viewMode === 'list') {
+    return (
+      <div className="group flex items-center justify-between p-4 bg-slate-800/40 border border-slate-700 hover:bg-slate-800/60 rounded-lg transition-all">
+        <div className="flex items-center gap-4">
+          <span className="text-2xl">{skill.icon}</span>
+          <div>
+            <h3 className="text-white font-medium group-hover:text-blue-400 transition-colors">{skill.name}</h3>
+            <div className="flex items-center gap-2 text-xs text-slate-500 mt-1">
+              <span className={`${domainConfig.color}`}>{domainConfig.label}</span>
+              <span>•</span>
+              <span>{skill.duration}</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex flex-col items-end text-xs text-slate-500">
+            <span>{skill.framework}</span>
+          </div>
+          <a
+            href={`/skills/${skill.id}.zip`}
+            download
+            className="p-2 text-slate-400 hover:text-white bg-slate-700/50 hover:bg-slate-700 rounded-lg transition-all"
+          >
+            <Download size={16} />
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="group relative flex flex-col bg-slate-800/40 border border-slate-700 rounded-xl overflow-hidden hover:border-slate-600 hover:shadow-2xl transition-all duration-300">
+    <div
+      className="group relative flex flex-col bg-slate-800/40 border border-slate-700 rounded-xl overflow-hidden hover:border-slate-600 hover:shadow-2xl transition-all duration-300 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]"
+    >
       <div className="p-6 flex flex-col h-full">
         {/* Header */}
         <div className="flex justify-between items-start mb-4">
@@ -173,7 +208,7 @@ const SkillCard = ({ skill }) => {
                 {skill.name}
               </h3>
               <div className="flex items-center gap-2 mt-1">
-                 <span className={`text-xs px-2 py-0.5 rounded-full border ${domainConfig.color} ${domainConfig.bg} ${domainConfig.border}`}>
+                <span className={`text-xs px-2 py-0.5 rounded-full border ${domainConfig.color} ${domainConfig.bg} ${domainConfig.border}`}>
                   {domainConfig.label}
                 </span>
               </div>
@@ -203,7 +238,7 @@ const SkillCard = ({ skill }) => {
           <div className="flex items-center gap-1 text-xs text-slate-500 mb-2 uppercase tracking-wider font-semibold">
             Workflow Phases
           </div>
-          <div className="flex items-center gap-1 flex-wrap">
+          <div className="flex items-center gap-1">
             {skill.phases.slice(0, 3).map((phase, idx) => (
               <React.Fragment key={idx}>
                 <span className="text-[10px] bg-slate-900 border border-slate-700 px-2 py-1 rounded text-slate-300 whitespace-nowrap">
@@ -212,7 +247,7 @@ const SkillCard = ({ skill }) => {
                 {idx < 2 && <ChevronRight size={10} className="text-slate-600 flex-shrink-0" />}
               </React.Fragment>
             ))}
-            {skill.phases.length > 3 && <span className="text-slate-500 text-xs ml-1">+{skill.phases.length - 3}</span>}
+            {skill.phases.length > 3 && <span className="text-slate-600 text-xs">+</span>}
           </div>
         </div>
 
@@ -223,7 +258,7 @@ const SkillCard = ({ skill }) => {
           className="w-full py-2.5 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-white text-sm font-medium border border-slate-600 hover:border-slate-500 flex items-center justify-center gap-2 transition-all"
         >
           <Download size={16} />
-          Download for Claude
+          Download .zip
         </a>
       </div>
 
@@ -233,47 +268,9 @@ const SkillCard = ({ skill }) => {
   );
 };
 
-const HowToUseStep = ({ number, title, description, code }) => (
-  <div className="flex gap-4 sm:gap-6">
-    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-white font-bold shadow-lg">
-      {number}
-    </div>
-    <div className="flex-grow">
-      <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
-      <p className="text-slate-400 mb-4">{description}</p>
-      {code && (
-        <div className="bg-slate-950 rounded-lg p-4 font-mono text-sm text-slate-300 border border-slate-800 overflow-x-auto">
-          <code>{code}</code>
-        </div>
-      )}
-    </div>
-  </div>
-);
-
-const BundleCard = ({ bundle }) => (
-  <a
-    href={`/skills/${bundle.id}.zip`}
-    download
-    className="group relative flex flex-col p-5 bg-slate-800/40 border border-slate-700 rounded-xl overflow-hidden hover:border-slate-500 hover:shadow-2xl transition-all duration-300"
-  >
-    <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${bundle.color} opacity-60 group-hover:opacity-100 transition-opacity`} />
-    <div className="flex items-center gap-3 mb-3">
-      <span className="text-2xl">{bundle.icon}</span>
-      <div>
-        <h3 className="text-lg font-bold text-white">{bundle.name}</h3>
-        <span className="text-xs text-slate-400">{bundle.count} skills</span>
-      </div>
-    </div>
-    <p className="text-slate-400 text-sm mb-4 flex-grow">{bundle.description}</p>
-    <div className="flex items-center gap-2 text-sm font-medium text-blue-400 group-hover:text-blue-300">
-      <Package size={16} />
-      Download Bundle
-    </div>
-  </a>
-);
-
 const App = () => {
   const [activeDomain, setActiveDomain] = useState('ALL');
+  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
 
   const filteredSkills = useMemo(() => {
     if (activeDomain === 'ALL') return SKILLS_DATA;
@@ -296,8 +293,54 @@ const App = () => {
         {/* Hero Section */}
         <Hero />
 
+        {/* Smart Discovery Section */}
+        <section className="py-20 border-t border-slate-800/50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-white mb-4">Smart Skill Discovery</h2>
+              <p className="text-slate-400 max-w-2xl mx-auto">
+                Claude doesn't just store skills — it actively listens for context and suggests the right skill at the right time.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="p-5 rounded-xl bg-slate-800/40 border border-slate-700">
+                <div className="text-purple-400 text-sm font-medium mb-2">You say:</div>
+                <p className="text-slate-300 italic mb-4">"What's my day look like?"</p>
+                <div className="text-emerald-400 text-sm font-medium mb-2">Claude suggests:</div>
+                <p className="text-slate-400 text-sm">The <span className="text-white font-medium">Scheduling</span> skill, integrating calendar, tasks, weather, and fitness data.</p>
+              </div>
+
+              <div className="p-5 rounded-xl bg-slate-800/40 border border-slate-700">
+                <div className="text-purple-400 text-sm font-medium mb-2">You say:</div>
+                <p className="text-slate-300 italic mb-4">"I'm feeling really overwhelmed and frustrated..."</p>
+                <div className="text-emerald-400 text-sm font-medium mb-2">Claude suggests:</div>
+                <p className="text-slate-400 text-sm">The <span className="text-white font-medium">Self Connection</span> skill for processing emotions using NVC + Focusing techniques.</p>
+              </div>
+
+              <div className="p-5 rounded-xl bg-slate-800/40 border border-slate-700">
+                <div className="text-purple-400 text-sm font-medium mb-2">You say:</div>
+                <p className="text-slate-300 italic mb-4">"I need to figure out what to charge for this project..."</p>
+                <div className="text-emerald-400 text-sm font-medium mb-2">Claude suggests:</div>
+                <p className="text-slate-400 text-sm">The <span className="text-white font-medium">Pricing Strategy</span> skill for value-based pricing.</p>
+              </div>
+
+              <div className="p-5 rounded-xl bg-slate-800/40 border border-slate-700">
+                <div className="text-purple-400 text-sm font-medium mb-2">You say:</div>
+                <p className="text-slate-300 italic mb-4">"I can't decide whether to take this job offer..."</p>
+                <div className="text-emerald-400 text-sm font-medium mb-2">Claude suggests:</div>
+                <p className="text-slate-400 text-sm">The <span className="text-white font-medium">Decision Making</span> skill with pre-mortem analysis.</p>
+              </div>
+            </div>
+
+            <p className="text-center text-slate-500 text-sm">
+              Each skill includes trigger patterns so Claude knows exactly when to offer help — no manual invocation needed.
+            </p>
+          </div>
+        </section>
+
         {/* Value Prop Section */}
-        <section className="py-16 bg-slate-900/50 border-y border-slate-800">
+        <section className="py-16 bg-slate-900/50 border-t border-b border-slate-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-3 gap-8">
               <FeatureCard
@@ -319,12 +362,104 @@ const App = () => {
           </div>
         </section>
 
+        {/* Get Started Section */}
+        <section className="py-20 border-b border-slate-800" id="howto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-white mb-4">Get Started</h2>
+              <p className="text-slate-400">Choose your preferred way to use LifeSkills.</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Claude Code */}
+              <div className="p-6 rounded-xl border border-indigo-400/30 bg-indigo-400/10 flex flex-col">
+                <div className="flex items-center gap-3 mb-3">
+                  <Package className="text-indigo-400" size={24} />
+                  <h3 className="text-lg font-bold text-white">Claude Code</h3>
+                </div>
+                <span className="text-xs text-indigo-400 bg-indigo-400/20 px-2 py-1 rounded w-fit mb-3">Recommended</span>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">
+                  Clone the repo and get all {SKILLS_DATA.length} skills at once. Skills auto-discover in Claude Code.
+                </p>
+                <div className="bg-slate-950 rounded-lg p-3 font-mono text-xs text-slate-300 border border-slate-800 mb-4 overflow-x-auto">
+                  <code>git clone https://github.com/standardhuman/lifeskills.git ~/.claude/lifeskills</code>
+                </div>
+                <a
+                  href="https://github.com/standardhuman/lifeskills"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 text-sm font-medium"
+                >
+                  <Github size={16} />
+                  View on GitHub
+                </a>
+              </div>
+
+              {/* Claude Desktop */}
+              <div className="p-6 rounded-xl border border-purple-400/30 bg-purple-400/10 flex flex-col">
+                <div className="flex items-center gap-3 mb-3">
+                  <Download className="text-purple-400" size={24} />
+                  <h3 className="text-lg font-bold text-white">Claude Desktop</h3>
+                </div>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">
+                  Download individual .zip files and upload via Settings → Capabilities → Skills. One skill per upload.
+                </p>
+                <button
+                  onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 text-sm font-medium mt-auto"
+                >
+                  <ArrowRight size={16} />
+                  Browse Skills Below
+                </button>
+              </div>
+
+              {/* Standalone */}
+              <div className="p-6 rounded-xl border border-slate-700 bg-slate-800/30 flex flex-col">
+                <div className="flex items-center gap-3 mb-3">
+                  <BookOpen className="text-slate-400" size={24} />
+                  <h3 className="text-lg font-bold text-white">Standalone</h3>
+                </div>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">
+                  No AI needed. Each skill is a readable SKILL.md file you can follow step-by-step on your own.
+                </p>
+                <a
+                  href="https://github.com/standardhuman/lifeskills/tree/main/skills"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-300 text-sm font-medium mt-auto"
+                >
+                  <Github size={16} />
+                  Browse on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Skills Section */}
         <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="skills">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-2">Available Skills</h2>
+              <h2 className="text-3xl font-bold text-white mb-2">Individual Skills</h2>
               <p className="text-slate-400">Library of {SKILLS_DATA.length} workflows across {Object.keys(DOMAINS).length} domains</p>
+            </div>
+
+            {/* View Toggle */}
+            <div className="flex bg-slate-800 p-1 rounded-lg border border-slate-700">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 rounded-md transition-all ${viewMode === 'grid' ? 'bg-slate-600 text-white shadow' : 'text-slate-400 hover:text-white'}`}
+                title="Grid View"
+              >
+                <Grid size={18} />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 rounded-md transition-all ${viewMode === 'list' ? 'bg-slate-600 text-white shadow' : 'text-slate-400 hover:text-white'}`}
+                title="List View"
+              >
+                <List size={18} />
+              </button>
             </div>
 
             {/* Mobile Domain Select */}
@@ -339,21 +474,6 @@ const App = () => {
                   <option key={key} value={key}>{config.label} ({skillCounts[key]})</option>
                 ))}
               </select>
-            </div>
-          </div>
-
-          {/* Bundles Section */}
-          <div className="mb-12 p-6 bg-slate-800/30 rounded-2xl border border-slate-700/50">
-            <div className="flex items-center gap-2 mb-4">
-              <Package size={20} className="text-blue-400" />
-              <h3 className="text-lg font-bold text-white">Download Bundles</h3>
-              <span className="text-xs text-slate-400 ml-2">for Claude Desktop</span>
-            </div>
-            <p className="text-slate-400 text-sm mb-6">Install multiple skills at once. Upload to Claude Desktop via Settings → Capabilities → Skills.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-              {BUNDLES_DATA.map(bundle => (
-                <BundleCard key={bundle.id} bundle={bundle} />
-              ))}
             </div>
           </div>
 
@@ -375,7 +495,7 @@ const App = () => {
                 onClick={() => setActiveDomain(key)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
                   activeDomain === key
-                    ? `${config.bg} ${config.color} ${config.border} shadow-lg scale-105`
+                    ? `${config.bg} ${config.color} ${config.border} shadow-[0_0_15px_rgba(0,0,0,0.3)] scale-105`
                     : 'bg-slate-800 border-transparent text-slate-400 hover:bg-slate-700 hover:text-white'
                 }`}
               >
@@ -384,59 +504,91 @@ const App = () => {
             ))}
           </div>
 
-          <h3 className="text-lg font-semibold text-slate-300 mb-6">Individual Skills</h3>
+          {/* Grid Content */}
+          <div className={`space-y-6 ${viewMode === 'list' ? 'max-w-4xl mx-auto' : ''}`}>
+            {activeDomain === 'ALL' ? (
+              SECTIONS.map((section) => {
+                // Find all skills that belong to domains in this section
+                const sectionSkills = SKILLS_DATA.filter(skill => section.domains.includes(skill.domain));
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredSkills.map(skill => (
-              <SkillCard key={skill.id} skill={skill} />
-            ))}
+                if (sectionSkills.length === 0) return null;
+
+                return (
+                  <div key={section.id} className="animate-fade-in">
+                    {viewMode === 'grid' && (
+                      <div className="flex items-center gap-4 mb-8 mt-12">
+                        <h3 className={`text-2xl font-bold ${section.color}`}>{section.title}</h3>
+                        <div className="h-px bg-slate-800 flex-grow"></div>
+                      </div>
+                    )}
+                    <div className={viewMode === 'grid' ? "flex flex-wrap justify-center gap-6" : "space-y-3"}>
+                      {sectionSkills.map(skill => (
+                        <SkillCard key={skill.id} skill={skill} viewMode={viewMode} />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className={viewMode === 'grid' ? "flex flex-wrap justify-center gap-6" : "space-y-3"}>
+                {filteredSkills.map(skill => (
+                  <SkillCard key={skill.id} skill={skill} viewMode={viewMode} />
+                ))}
+              </div>
+            )}
+
+            {filteredSkills.length === 0 && (
+              <div className="text-center py-20">
+                <p className="text-slate-500 text-lg">No skills found for this category yet.</p>
+              </div>
+            )}
           </div>
-
-          {filteredSkills.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-slate-500 text-lg">No skills found for this category yet.</p>
-            </div>
-          )}
         </section>
 
-        {/* How to Use */}
-        <section className="py-24 bg-slate-800/20 border-t border-slate-800" id="howto">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-white mb-4">How to use LifeSkills</h2>
-              <p className="text-slate-400">Get started in less than 5 minutes.</p>
+        {/* Contribute Section */}
+        <section className="py-24 bg-slate-800/20 border-t border-slate-800">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">Create Your Own Skills</h2>
+            <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
+              LifeSkills is open source. Have a proven workflow you use repeatedly? Turn it into a skill others can use too.
+            </p>
+
+            <div className="inline-flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://github.com/standardhuman/lifeskills/blob/main/skills/creating-lifeskills/SKILL.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-xl bg-purple-500/20 text-purple-400 font-medium border border-purple-500/30 hover:bg-purple-500/30 transition-all flex items-center justify-center gap-2"
+              >
+                <BookOpen size={18} />
+                Read the Creation Guide
+              </a>
+              <a
+                href="https://github.com/standardhuman/lifeskills/pulls"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-xl bg-slate-800 text-white font-medium border border-slate-700 hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
+              >
+                <Github size={18} />
+                Submit a Pull Request
+              </a>
             </div>
 
-            <div className="space-y-12">
-              <HowToUseStep
-                number="1"
-                title="For Claude Code Users"
-                description="Clone the repository to your Claude config directory. Skills will be auto-discovered."
-                code="git clone https://github.com/standardhuman/lifeskills.git ~/.claude/lifeskills"
-              />
-              <HowToUseStep
-                number="2"
-                title="For Claude Desktop"
-                description="Download any skill's .zip file above and upload it to Claude Desktop via Settings → Skills → Upload."
-              />
-              <HowToUseStep
-                number="3"
-                title="Standalone Use"
-                description="Each skill is a readable markdown file. Download, open SKILL.md, and follow the workflow step-by-step. No AI required."
-              />
-            </div>
+            <p className="text-slate-500 text-sm mt-8">
+              Skills should be grounded in established frameworks (GTD, NVC, etc.) and tested in real use.
+            </p>
           </div>
         </section>
       </main>
 
       <footer className="py-12 border-t border-slate-800 bg-slate-950 text-center">
         <p className="text-slate-500 mb-4">
-          Inspired by <a href="https://github.com/obra/superpowers" className="text-slate-300 hover:text-white transition-colors">Superpowers</a> and built for the future of work.
+          Inspired by <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-white transition-colors">Superpowers</a> and built for the future of work.
         </p>
         <div className="flex justify-center gap-6">
-          <a href="https://github.com/standardhuman/lifeskills" className="text-slate-600 hover:text-white transition-colors">GitHub</a>
-          <a href="https://github.com/standardhuman/lifeskills/blob/main/CONTRIBUTING.md" className="text-slate-600 hover:text-white transition-colors">Contributing</a>
+          <a href="https://github.com/standardhuman/lifeskills" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-white transition-colors">GitHub</a>
+          <a href="https://github.com/standardhuman/lifeskills/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-white transition-colors">Contributing</a>
+          <a href="https://github.com/standardhuman/lifeskills/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-white transition-colors">License</a>
         </div>
       </footer>
     </div>
