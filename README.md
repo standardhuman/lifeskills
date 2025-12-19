@@ -6,7 +6,7 @@ Workflow-based practices for all domains of life and work.
 
 ## Inspired by Superpowers
 
-This project is inspired by [Superpowers](https://github.com/cldcvr/superpowers), a collection of engineering workflow skills for Claude Code. Superpowers provides rigorous, discipline-enforcing processes for software development tasks like test-driven development, debugging, and code review.
+This project is inspired by [Superpowers](https://github.com/cldcvr/superpowers), a collection of engineering workflow skills for AI coding assistants. Superpowers provides rigorous, discipline-enforcing processes for software development tasks like test-driven development, debugging, and code review.
 
 **LifeSkills extends this approach beyond engineering** to cover the full spectrum of life domains: business planning, creative work, productivity, emotional processing, interpersonal communication, and physical health. Same philosophy—structured workflows grounded in proven frameworks—applied to everything else.
 
@@ -26,14 +26,14 @@ Each skill provides a structured process to follow, preventing common failure mo
 
 ## Installation
 
-### For Claude Code Users
+### For AI Coding Assistants
 
-1. Clone to your Claude config directory:
+1. Clone to your AI assistant's config directory (e.g., for Claude Code):
    ```bash
    git clone https://github.com/standardhuman/lifeskills.git ~/.claude/lifeskills
    ```
 
-2. Skills will be auto-discovered by Claude Code's skill system
+2. Skills will be auto-discovered by your assistant's skill system
 
 3. The `using-lifeskills` meta-skill will suggest relevant skills based on context
 
@@ -140,7 +140,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on writing new skills.
 
 ## Related Projects
 
-- [Superpowers](https://github.com/cldcvr/superpowers) - Engineering workflow skills for Claude Code (the inspiration for this framework)
+- [Superpowers](https://github.com/cldcvr/superpowers) - Engineering workflow skills for AI coding assistants (the inspiration for this framework)
 
 ---
 

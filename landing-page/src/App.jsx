@@ -371,15 +371,15 @@ const App = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {/* Claude Code */}
+              {/* AI Coding Assistants */}
               <div className="p-6 rounded-xl border border-indigo-400/30 bg-indigo-400/10 flex flex-col">
                 <div className="flex items-center gap-3 mb-3">
                   <Package className="text-indigo-400" size={24} />
-                  <h3 className="text-lg font-bold text-white">Claude Code</h3>
+                  <h3 className="text-lg font-bold text-white">AI Coding Assistants</h3>
                 </div>
                 <span className="text-xs text-indigo-400 bg-indigo-400/20 px-2 py-1 rounded w-fit mb-3">Recommended</span>
                 <p className="text-slate-400 text-sm mb-4 flex-grow">
-                  Clone the repo and get all {SKILLS_DATA.length} skills at once. Skills auto-discover in Claude Code.
+                  Clone the repo and get all {SKILLS_DATA.length} skills at once. Works with Claude Code, Cursor, and other AI assistants.
                 </p>
                 <div className="bg-slate-950 rounded-lg p-3 font-mono text-xs text-slate-300 border border-slate-800 mb-4 overflow-x-auto">
                   <code>git clone https://github.com/standardhuman/lifeskills.git ~/.claude/lifeskills</code>
