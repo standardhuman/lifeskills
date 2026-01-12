@@ -5,6 +5,15 @@ description: Use for daily/weekly planning, finding time for activities, or chec
 
 # Scheduling Skill
 
+## Before Starting (Optional)
+
+If you're feeling unclear or have mixed feelings about scheduling:
+- **Feeling overwhelmed or anxious about your schedule?** → Try self-connection first to process what's weighing on you
+- **Unsure what to prioritize?** → Try design-exploration first to clarify direction
+- **Ready to plan your time?** → Continue below
+
+## Overview
+
 A multi-source scheduling assistant that understands your work, activities, and preferences to provide intelligent daily and weekly planning.
 
 ## When to Use This Skill

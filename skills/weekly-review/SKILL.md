@@ -5,6 +5,13 @@ description: Use at end of week or when user mentions planning, review, or feeli
 
 # Weekly Review
 
+## Before Starting (Optional)
+
+If you're feeling unclear or have mixed feelings about this:
+- **Feeling stuck or overwhelmed?** → Try self-connection first to process what's weighing on you
+- **Unsure what direction to take?** → Try design-exploration first
+- **Ready to review and plan?** → Continue to Phase 1 below
+
 ## Overview
 
 GTD-based structured reflection to clear your mind, process open loops, and set priorities for the coming week. Prevents drift, overwhelm, and the feeling of being "always behind."
